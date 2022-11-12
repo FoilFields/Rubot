@@ -43,15 +43,22 @@ module.exports = {
 		const server = interaction.guild.id
 
 		if (subcommand === 'add') {
-			const description = interaction.options.getString('content') ?? 'You diddn\'t set the content dumbass'
-			RuleManager.Add(server, rule, description)
+			const description = interaction.options.getString('content') ?? 'You diddn\'t set the content dumbass';
 
-			await interaction.reply(`Created rule ${rule}`);
+			try {
+				RuleManager.Add(server, rule, description)
+				await interaction.reply(`Created rule ${rule}`);
+			} catch (error) {
+				await interaction.reply(`Couldn't create rule ${rule},\n${error}`);
+			}
 
 		} else if (subcommand === 'delete') {
-			RuleManager.Remove(server, rule)
-
-			await interaction.reply(`Deleted rule ${rule}`);
+			try {
+				RuleManager.Remove(server, rule)
+				await interaction.reply(`Deleted rule ${rule}`);
+			} catch (error) {
+				await interaction.reply(`Couldn't delete rule ${rule},\n${error}`);
+			}
 		}
 	},
 };

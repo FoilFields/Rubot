@@ -1,15 +1,63 @@
+const fs = require('fs');
+const Rules = require('./rules.json');
+
 class RuleManager {
     static Add(server, command, content) {
-        console.log(`Added ${command} to ${server} with ${content}`)
+        let rule = {
+            "command": command,
+            "content": content
+        };
+
+        if (Rules[server]) {
+            Rules[server].forEach(rule => {
+                if (rule.command == command) throw new Error('Rule already exists!');
+            });
+
+            Rules[server].push(rule);
+        } else {
+            Rules[server] = [rule];
+        }
+
+        this.Save(Rules);
     }
 
     static Remove(server, command) {
-        console.log(`Removed ${command} from ${server}`)
+        let destroy
+        if (Rules[server] && Rules[server].length > 0) {
+
+            for (let i = 0; i < Rules[server].length; i++) {
+                const rule = Rules[server][i];
+
+                if (rule.command == command) {
+                    destroy = rule;
+                    break;
+                }
+            }
+
+            if (!destroy) {
+                throw new Error("This rule doesn't exist!");
+            }
+
+        } else {
+            throw new Error("This server has no rules! IT'S ANARCHY!!!!!");
+        }
+
+        Rules[server].splice(Rules[server].indexOf(destroy), 1)
+
+        this.Save(Rules);
     }
 
     static Get(server) {
-        console.log(`Issued list of ${server}`)
-        return "gort"
+        console.log(`Issued list of ${server}`);
+        return "gort";
+    }
+
+    static Save(rules) {
+        fs.writeFile("./rules.json", JSON.stringify(rules), function(err) {
+            if(err) {
+                return console.log(err);
+            }
+        }); 
     }
 }
 
