@@ -1,0 +1,22 @@
+{
+  "name": "rubot",
+  "version": "1.0.0",
+  "description": "A basic JavaScript Discord bot to help me become more epic!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FoilFields/Rubot.git"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "Woukie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FoilFields/Rubot/issues"
+  },
+  "homepage": "https://github.com/FoilFields/Rubot#readme"
+}
