@@ -4,7 +4,8 @@
   "description": "A basic JavaScript Discord bot to help me become more epic!",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "deploy_commands": "node deploy-commands.js",
+    "start": "npm run deploy_commands && node index.js"
   },
   "repository": {
     "type": "git",
