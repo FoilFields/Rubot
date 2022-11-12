@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/FoilFields/Rubot/issues"
   },
-  "homepage": "https://github.com/FoilFields/Rubot#readme"
+  "homepage": "https://github.com/FoilFields/Rubot#readme",
+  "dependencies": {
+    "discord.js": "^14.6.0"
+  }
 }
