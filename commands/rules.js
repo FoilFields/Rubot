@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 const RuleManager = require('../ruleManager')
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription('Displays the server rules'),
 	async execute(interaction) {
 		const server = interaction.guild.id
-		const serverRules = RuleManager.Get(server)
-		await interaction.reply("Rules for server: ");
+		const serverRules = RuleManager.Get(server, interaction.channel_id)
+		await interaction.reply(serverRules);
 	},
 };

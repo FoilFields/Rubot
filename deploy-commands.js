@@ -1,5 +1,6 @@
 const { REST, Routes, Client } = require('discord.js');
-const { CLIENT_ID, GUILD_ID, BOT_TOKEN } = require('./config.json');
+const { CLIENT_ID,  BOT_TOKEN } = require('./config.json');
+const Rules = require('./rules.json');
 const fs = require('node:fs');
 
 const commands = [];
@@ -22,10 +23,10 @@ const rest = new REST({ version: '10' }).setToken(BOT_TOKEN);
 
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
-			Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
+			Routes.applicationCommands(CLIENT_ID),
 			{ body: commands },
 		);
-
+		
 		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
 	} catch (error) {
 		// And of course, make sure you catch and log any errors!
