@@ -6,8 +6,11 @@ module.exports = {
 		.setName('rules')
 		.setDescription('Displays the server rules'),
 	async execute(interaction) {
-		const server = interaction.guild.id
-		const serverRules = RuleManager.Get(server, interaction.channel_id)
-		await interaction.reply(serverRules);
+		const server = interaction.guild.id;
+		try {
+			await interaction.reply(RuleManager.Get(server, interaction.channel_id));
+		} catch (error) {
+			await interaction.reply(`Couldn't show rules,\n${error}`);
+		}
 	},
 };

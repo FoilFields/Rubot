@@ -48,7 +48,7 @@ class RuleManager {
     }
 
     static Get(server, channel_id) {
-        if (Rules[server]) {
+        if (Rules[server] && Rules[server].length > 0) {
             return this.BuildMessage(Rules[server], channel_id)
         } else {
             throw new Error("This server has no rules! POST MEMES IN GENERAL!!!!")
