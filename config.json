@@ -1,3 +1,5 @@
 {
-    "BOT_TOKEN": "put ur token in these quote marks"
+    "BOT_TOKEN": "",
+    "CLIENT_ID": "",
+	"GUILD_ID": ""
 }
